@@ -8,11 +8,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import java.util.ArrayList;
 
 /**
  * Template JavaFX application.
  */
 public class PlaylistApp extends Application {
+    private ArrayList<String> playlist = new ArrayList<>();
     public static void main(String[] args) {
         launch(args);
     }
@@ -59,8 +61,12 @@ public class PlaylistApp extends Application {
      */
     
     void onAddSong(TextField inputBox, TextArea outputBox) {
-        String song = inputBox.getText();
-        inputBox.clear();
-        outputBox.appendText("Song: " + song + "\n");
-    }
+        String song = inputBox.getText().trim();
+            if (!song.isEmpty()) {
+                playlist.add(song);
+                inputBox.clear();
+                outputBox.setText(String.join("\n", playlist));
+            }
+        }
 }
+
