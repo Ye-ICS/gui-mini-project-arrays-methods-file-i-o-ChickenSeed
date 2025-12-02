@@ -1,7 +1,7 @@
 {
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
-        "C:/Users/yek/OneDrive - Limestone DSB/Workspace/Java/lib/javafx-sdk-21.0.9/lib/*.jar",
+
         "c:\\Users\\jd4uk09\\OneDrive - Limestone DSB\\Grade 11\\lib\\javafx-sdk-21.0.9\\lib\\javafx.base.jar",
         "c:\\Users\\jd4uk09\\OneDrive - Limestone DSB\\Grade 11\\lib\\javafx-sdk-21.0.9\\lib\\javafx.controls.jar",
         "c:\\Users\\jd4uk09\\OneDrive - Limestone DSB\\Grade 11\\lib\\javafx-sdk-21.0.9\\lib\\javafx.fxml.jar",
