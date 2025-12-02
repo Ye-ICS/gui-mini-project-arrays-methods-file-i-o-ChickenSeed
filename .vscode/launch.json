@@ -9,13 +9,6 @@
             "name": "PlaylistApp",
             "request": "launch",
             "mainClass": "PlaylistApp",
-            "projectName": "gui-mini-project-arrays-methods-file-i-o-ChickenSeed_fe7b7cc2"
-        },
-        {
-            "type": "java",
-            "name": "App",
-            "request": "launch",
-            "mainClass": "App",
             "vmArgs": "--module-path \"C:/Users/jd4uk09/OneDrive - Limestone DSB/Grade 11/lib/javafx-sdk-21.0.9/lib\" --add-modules javafx.controls,javafx.fxml"
         }
     ]
