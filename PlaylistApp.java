@@ -40,20 +40,23 @@ public class PlaylistApp extends Application {
         Button submissionBtn = new Button();
         submissionBtn.setText("Add Song");
         Button loadFileBtn = new Button("Load Songs From File");
+        Button searchBtn = new Button("Search Song");
 
         // Set up reactions (aka callbacks).
         submissionBtn.setOnAction(event -> onAddSong(songInputBox, messageBox));
         loadFileBtn.setOnAction(event -> onLoadSongs(messageBox));
+        searchBtn.setOnAction(event -> onSearchSong(songInputBox, messageBox));
 
         // Add components to the content box.
         contentBox.getChildren().add(promptLabel);
         contentBox.getChildren().add(songInputBox);
         contentBox.getChildren().add(submissionBtn);
         contentBox.getChildren().add(loadFileBtn);
+        contentBox.getChildren().add(searchBtn);
         contentBox.getChildren().add(messageBox);
 
         // Set up the window and display it.
-        Scene scene = new Scene(contentBox, 300, 250);
+        Scene scene = new Scene(contentBox, 300, 300);
         stage.setScene(scene);
         stage.setTitle("Playlist Manager");
         stage.show();
@@ -69,7 +72,7 @@ public class PlaylistApp extends Application {
 
     // Method to 
     void onAddSong(TextField inputBox, TextArea outputBox) {
-        String song = inputBox.getText().trim();
+        String song = inputBox.getText();
             if (!song.isEmpty()) {
                 playlist.add(song);
                 inputBox.clear();
@@ -77,7 +80,7 @@ public class PlaylistApp extends Application {
             }
         }
 
-    // Method for loading songs from a file into the playlist
+    // Loading method for songs from a file into playlist
     void onLoadSongs(TextArea outputBox) {
         playlist.clear();
         try {
@@ -89,7 +92,22 @@ public class PlaylistApp extends Application {
             scanner.close();
             outputBox.setText(String.join("\n", playlist)); // Display loaded songs
         } catch (FileNotFoundException e) {
-            outputBox.setText("Error: songs.txt not found!");
+            outputBox.setText("Error: songs.txt not found.");
+        }
+    }
+
+    // Search method for playlist
+    void onSearchSong(TextField inputBox, TextArea outputBox) {
+        String searchTerm = inputBox.getText();
+        inputBox.clear();
+        if (searchTerm.isEmpty()) {
+            outputBox.setText("Please enter a song name to search.");
+            return;
+        }
+        if (playlist.contains(searchTerm)) {
+            outputBox.setText("Found: " + searchTerm);
+        } else {
+            outputBox.setText("Not found: " + searchTerm);
         }
     }
 }
