@@ -77,9 +77,10 @@ public class MethodsPlaylist {
             return;
         }
         if (playlist.contains(searchTerm)) {
-            outputBox.setText("Found: " + searchTerm);
+            outputBox.setText("Search Result: Found '" + searchTerm + "'");
         } else {
-            outputBox.setText("Not found: " + searchTerm);
+            outputBox.setText("Search Result: '" + searchTerm + "' not found.");
         }
     }
 }
+
