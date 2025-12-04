@@ -47,12 +47,11 @@ public class PlaylistApp extends Application {
         Button saveBtn = new Button("Save Playlist");
 
         // Set up reactions (aka callbacks).
-        addSongBtn.setOnAction(event -> onAddSong(songInputBox, messageBox));
-        removeBtn.setOnAction(event -> onRemoveSong(songInputBox, messageBox));
-        submissionBtn.setOnAction(event -> onAddSong(songInputBox, messageBox));
-        loadFileBtn.setOnAction(event -> onLoadSongs(messageBox));
-        saveBtn.setOnAction(event -> onSaveSongs());
-        searchBtn.setOnAction(event -> onSearchSong(songInputBox, messageBox));
+        addSongBtn.setOnAction(event -> MethodsPlaylist.onAddSong(songInputBox, messageBox, playlist));
+        removeBtn.setOnAction(event -> MethodsPlaylist.onRemoveSong(songInputBox, messageBox, playlist));
+        loadFileBtn.setOnAction(event -> MethodsPlaylist.onLoadSongs(messageBox, playlist));
+        saveBtn.setOnAction(event -> MethodsPlaylist.onSaveSongs(playlist));
+        searchBtn.setOnAction(event -> MethodsPlaylist.onSearchSong(songInputBox, messageBox, playlist));
 
         // Add components to the content box.
         contentBox.getChildren().addAll(promptLabel, songInputBox, addSongBtn, removeBtn, loadFileBtn, saveBtn, searchBtn, messageBox);
@@ -62,77 +61,5 @@ public class PlaylistApp extends Application {
         stage.setScene(scene);
         stage.setTitle("Playlist Manager");
         stage.show();
-    }
-
-    /**
-     * Handle the submission of a songs
-     * @param inputBox  The TextField where the user types the song title
-     * @param outputBox The TextArea where the submitted song titles are displayed
-     */
-
-    // Methods
-
-    // Method to 
-    void onAddSong(TextField inputBox, TextArea outputBox) {
-        String song = inputBox.getText();
-            if (!song.isEmpty()) {
-                playlist.add(song);
-                inputBox.clear();
-                outputBox.setText(String.join("\n", playlist));
-            }
-        }
-
-    // Loading method for songs from a file into playlist
-        void onLoadSongs(TextArea outputBox) {
-        playlist.clear();
-        try {
-            File file = new File("songs.txt");
-            Scanner scanner = new Scanner(file);
-            while (scanner.hasNextLine()) {
-                playlist.add(scanner.nextLine());
-            }
-            scanner.close();
-            outputBox.setText(String.join("\n", playlist));
-        } catch (FileNotFoundException e) {
-            outputBox.setText("Error: songs.txt not found.");
-        }
-    }
-
-    void onSaveSongs() {
-        try {
-            PrintWriter writer = new PrintWriter("songs.txt");
-            for (String song : playlist) {
-                writer.println(song);
-            }
-            writer.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("Error saving playlist.");
-        }
-    }
-
-    // Method for removing song
-    void onRemoveSong(TextField inputBox, TextArea outputBox) {
-        String song = inputBox.getText();
-        if (playlist.remove(song)) {
-            outputBox.setText(String.join("\n", playlist));
-        } else {
-            outputBox.setText("Song not found: " + song);
-        }
-        inputBox.clear();
-    }
-
-    // Search method for playlist
-    void onSearchSong(TextField inputBox, TextArea outputBox) {
-        String searchTerm = inputBox.getText();
-        inputBox.clear();
-        if (searchTerm.isEmpty()) {
-            outputBox.setText("Please enter a song name to search.");
-            return;
-        }
-        if (playlist.contains(searchTerm)) {
-            outputBox.setText("Found: " + searchTerm);
-        } else {
-            outputBox.setText("Not found: " + searchTerm);
-        }
     }
 }
