@@ -1,7 +1,6 @@
 {
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
-
         "c:\\Users\\jd4uk09\\OneDrive - Limestone DSB\\Grade 11\\lib\\javafx-sdk-21.0.9\\lib\\javafx.base.jar",
         "c:\\Users\\jd4uk09\\OneDrive - Limestone DSB\\Grade 11\\lib\\javafx-sdk-21.0.9\\lib\\javafx.controls.jar",
         "c:\\Users\\jd4uk09\\OneDrive - Limestone DSB\\Grade 11\\lib\\javafx-sdk-21.0.9\\lib\\javafx.fxml.jar",
@@ -9,6 +8,14 @@
         "c:\\Users\\jd4uk09\\OneDrive - Limestone DSB\\Grade 11\\lib\\javafx-sdk-21.0.9\\lib\\javafx.media.jar",
         "c:\\Users\\jd4uk09\\OneDrive - Limestone DSB\\Grade 11\\lib\\javafx-sdk-21.0.9\\lib\\javafx.swing.jar",
         "c:\\Users\\jd4uk09\\OneDrive - Limestone DSB\\Grade 11\\lib\\javafx-sdk-21.0.9\\lib\\javafx.web.jar",
-        "c:\\Users\\jd4uk09\\OneDrive - Limestone DSB\\Grade 11\\lib\\javafx-sdk-21.0.9\\lib\\javafx-swt.jar"
+        "c:\\Users\\jd4uk09\\OneDrive - Limestone DSB\\Grade 11\\lib\\javafx-sdk-21.0.9\\lib\\javafx-swt.jar",
+        "c:\\Users\\manu1\\OneDrive - Limestone DSB\\Grade 11\\lib\\javafx-sdk-21.0.9\\lib\\javafx.base.jar",
+        "c:\\Users\\manu1\\OneDrive - Limestone DSB\\Grade 11\\lib\\javafx-sdk-21.0.9\\lib\\javafx.controls.jar",
+        "c:\\Users\\manu1\\OneDrive - Limestone DSB\\Grade 11\\lib\\javafx-sdk-21.0.9\\lib\\javafx.fxml.jar",
+        "c:\\Users\\manu1\\OneDrive - Limestone DSB\\Grade 11\\lib\\javafx-sdk-21.0.9\\lib\\javafx.graphics.jar",
+        "c:\\Users\\manu1\\OneDrive - Limestone DSB\\Grade 11\\lib\\javafx-sdk-21.0.9\\lib\\javafx.media.jar",
+        "c:\\Users\\manu1\\OneDrive - Limestone DSB\\Grade 11\\lib\\javafx-sdk-21.0.9\\lib\\javafx.swing.jar",
+        "c:\\Users\\manu1\\OneDrive - Limestone DSB\\Grade 11\\lib\\javafx-sdk-21.0.9\\lib\\javafx.web.jar",
+        "c:\\Users\\manu1\\OneDrive - Limestone DSB\\Grade 11\\lib\\javafx-sdk-21.0.9\\lib\\javafx-swt.jar"
     ]
 }

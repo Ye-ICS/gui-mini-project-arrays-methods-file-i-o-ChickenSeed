@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+import java.io.PrintWriter;
 
 /**
  * Playlist Manager Application.
@@ -27,8 +28,7 @@ public class PlaylistApp extends Application {
         VBox contentBox = new VBox();
         contentBox.setAlignment(Pos.CENTER);
 
-        Label promptLabel = new Label();
-        promptLabel.setText("Enter song title");
+        Label promptLabel = new Label("Enter song title");
 
         TextField songInputBox = new TextField();
         songInputBox.setMaxWidth(150);
@@ -37,26 +37,28 @@ public class PlaylistApp extends Application {
         TextArea messageBox = new TextArea();
         messageBox.setEditable(false);
 
+        // Buttons
         Button submissionBtn = new Button();
         submissionBtn.setText("Add Song");
         Button loadFileBtn = new Button("Load Songs From File");
         Button searchBtn = new Button("Search Song");
+        Button addSongBtn = new Button("Add Song");
+        Button removeBtn = new Button("Remove Song");
+        Button saveBtn = new Button("Save Playlist");
 
         // Set up reactions (aka callbacks).
+        addSongBtn.setOnAction(event -> onAddSong(songInputBox, messageBox));
+        removeBtn.setOnAction(event -> onRemoveSong(songInputBox, messageBox));
         submissionBtn.setOnAction(event -> onAddSong(songInputBox, messageBox));
         loadFileBtn.setOnAction(event -> onLoadSongs(messageBox));
+        saveBtn.setOnAction(event -> onSaveSongs());
         searchBtn.setOnAction(event -> onSearchSong(songInputBox, messageBox));
 
         // Add components to the content box.
-        contentBox.getChildren().add(promptLabel);
-        contentBox.getChildren().add(songInputBox);
-        contentBox.getChildren().add(submissionBtn);
-        contentBox.getChildren().add(loadFileBtn);
-        contentBox.getChildren().add(searchBtn);
-        contentBox.getChildren().add(messageBox);
+        contentBox.getChildren().addAll(promptLabel, songInputBox, addSongBtn, removeBtn, loadFileBtn, saveBtn, searchBtn, messageBox);
 
         // Set up the window and display it.
-        Scene scene = new Scene(contentBox, 300, 300);
+        Scene scene = new Scene(contentBox, 300, 400);
         stage.setScene(scene);
         stage.setTitle("Playlist Manager");
         stage.show();
@@ -81,19 +83,42 @@ public class PlaylistApp extends Application {
         }
 
     // Loading method for songs from a file into playlist
-    void onLoadSongs(TextArea outputBox) {
+        void onLoadSongs(TextArea outputBox) {
         playlist.clear();
         try {
-            File file = new File("songs.txt"); // File name
+            File file = new File("songs.txt");
             Scanner scanner = new Scanner(file);
             while (scanner.hasNextLine()) {
-                playlist.add(scanner.nextLine()); // Add each line as a song
+                playlist.add(scanner.nextLine());
             }
             scanner.close();
-            outputBox.setText(String.join("\n", playlist)); // Display loaded songs
+            outputBox.setText(String.join("\n", playlist));
         } catch (FileNotFoundException e) {
             outputBox.setText("Error: songs.txt not found.");
         }
+    }
+
+    void onSaveSongs() {
+        try {
+            PrintWriter writer = new PrintWriter("songs.txt");
+            for (String song : playlist) {
+                writer.println(song);
+            }
+            writer.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("Error saving playlist.");
+        }
+    }
+
+    // Method for removing song
+    void onRemoveSong(TextField inputBox, TextArea outputBox) {
+        String song = inputBox.getText();
+        if (playlist.remove(song)) {
+            outputBox.setText(String.join("\n", playlist));
+        } else {
+            outputBox.setText("Song not found: " + song);
+        }
+        inputBox.clear();
     }
 
     // Search method for playlist
