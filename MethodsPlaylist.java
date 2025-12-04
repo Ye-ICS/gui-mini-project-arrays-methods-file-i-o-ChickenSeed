@@ -1,4 +1,3 @@
-
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import java.util.ArrayList;
@@ -16,14 +15,18 @@ import java.util.Scanner;
 public class MethodsPlaylist {
 
     // Add Song
+    
     public static void onAddSong(TextField inputBox, TextArea outputBox, ArrayList<String> playlist) {
-        String song = inputBox.getText().trim();
+        String song = inputBox.getText();
         if (!song.isEmpty()) {
             playlist.add(song);
             inputBox.clear();
-            outputBox.setText(String.join("\n", playlist));
+            outputBox.setText("Song added: " + song + "\n\nCurrent Playlist:\n" + String.join("\n", playlist));
+        } else {
+            outputBox.setText("Please enter a valid song name.");
         }
     }
+
 
     // Remove Song
     public static void onRemoveSong(TextField inputBox, TextArea outputBox, ArrayList<String> playlist) {
