@@ -27,7 +27,6 @@ public class MethodsPlaylist {
         }
     }
 
-
     // Remove Song
     public static void onRemoveSong(TextField inputBox, TextArea outputBox, ArrayList<String> playlist) {
         String song = inputBox.getText().trim();
@@ -39,7 +38,6 @@ public class MethodsPlaylist {
         inputBox.clear();
     }
 
-
     // Load Songs from File
     public static void onLoadSongs(TextArea outputBox, ArrayList<String> playlist) {
         playlist.clear();
@@ -50,7 +48,7 @@ public class MethodsPlaylist {
                 playlist.add(scanner.nextLine());
             }
             scanner.close();
-            outputBox.setText(String.join("\n", playlist));
+            outputBox.setText("Playlist loaded successfully!\n\n" + String.join("\n", playlist));
         } catch (FileNotFoundException e) {
             outputBox.setText("Error: songs.txt not found.");
         }
@@ -69,7 +67,6 @@ public class MethodsPlaylist {
             outputBox.setText("Error saving playlist.");
         }
     }
-
 
     // Search Song
     public static void onSearchSong(TextField inputBox, TextArea outputBox, ArrayList<String> playlist) {

@@ -50,7 +50,7 @@ public class PlaylistApp extends Application {
         addSongBtn.setOnAction(event -> MethodsPlaylist.onAddSong(songInputBox, messageBox, playlist));
         removeBtn.setOnAction(event -> MethodsPlaylist.onRemoveSong(songInputBox, messageBox, playlist));
         loadFileBtn.setOnAction(event -> MethodsPlaylist.onLoadSongs(messageBox, playlist));
-        saveBtn.setOnAction(event -> MethodsPlaylist.onSaveSongs(playlist));
+        saveBtn.setOnAction(event -> MethodsPlaylist.onSaveSongs(playlist, messageBox));
         searchBtn.setOnAction(event -> MethodsPlaylist.onSearchSong(songInputBox, messageBox, playlist));
 
         // Add components to the content box.
