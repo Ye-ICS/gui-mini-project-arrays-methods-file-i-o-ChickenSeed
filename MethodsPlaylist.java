@@ -57,17 +57,19 @@ public class MethodsPlaylist {
     }
 
     // Save Playlist to File
-    public static void onSaveSongs(ArrayList<String> playlist) {
+    public static void onSaveSongs(ArrayList<String> playlist, TextArea outputBox) {
         try {
             PrintWriter writer = new PrintWriter("songs.txt");
             for (String song : playlist) {
                 writer.println(song);
             }
             writer.close();
+            outputBox.setText("Playlist saved successfully!");
         } catch (FileNotFoundException e) {
-            System.out.println("Error saving playlist.");
+            outputBox.setText("Error saving playlist.");
         }
     }
+
 
     // Search Song
     public static void onSearchSong(TextField inputBox, TextArea outputBox, ArrayList<String> playlist) {
