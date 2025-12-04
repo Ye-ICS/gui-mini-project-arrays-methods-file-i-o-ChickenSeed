@@ -32,12 +32,13 @@ public class MethodsPlaylist {
     public static void onRemoveSong(TextField inputBox, TextArea outputBox, ArrayList<String> playlist) {
         String song = inputBox.getText().trim();
         if (playlist.remove(song)) {
-            outputBox.setText(String.join("\n", playlist));
+            outputBox.setText("Song removed: " + song + "\n\nCurrent Playlist:\n" + String.join("\n", playlist));
         } else {
             outputBox.setText("Song not found: " + song);
         }
         inputBox.clear();
     }
+
 
     // Load Songs from File
     public static void onLoadSongs(TextArea outputBox, ArrayList<String> playlist) {
