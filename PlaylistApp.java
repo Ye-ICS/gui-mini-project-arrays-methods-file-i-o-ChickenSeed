@@ -24,18 +24,18 @@ public class PlaylistApp extends Application {
 
     @Override
     public void start(Stage stage) {
-        // Create components
+                // Create components to add.
         VBox contentBox = new VBox();
         contentBox.setAlignment(Pos.CENTER);
 
         Label promptLabel = new Label("Enter song title");
 
-        TextField songInputField = new TextField();
-        songInputField.setMaxWidth(150);
-        songInputField.setPromptText("Song name"); 
+        TextField songInputBox = new TextField();
+        songInputBox.setMaxWidth(150);
+        songInputBox.setPromptText("Song name"); 
         
-        TextArea outputArea = new TextArea();
-        outputArea.setEditable(false);
+        TextArea messageBox = new TextArea();
+        messageBox.setEditable(false);
 
         // Buttons
         Button submissionBtn = new Button();
@@ -45,16 +45,18 @@ public class PlaylistApp extends Application {
         Button addSongBtn = new Button("Add Song");
         Button removeBtn = new Button("Remove Song");
         Button saveBtn = new Button("Save Playlist");
+        Button clearBtn = new Button("Clear Playlist");
 
         // Set up reactions (aka callbacks).
-        addSongBtn.setOnAction(event -> MethodsPlaylist.onAddSong(songInputField, outputArea, playlist));
-        removeBtn.setOnAction(event -> MethodsPlaylist.onRemoveSong(songInputField, outputArea, playlist));
-        loadFileBtn.setOnAction(event -> MethodsPlaylist.onLoadSongs(outputArea, playlist));
-        saveBtn.setOnAction(event -> MethodsPlaylist.onSaveSongs(playlist, outputArea));
-        searchBtn.setOnAction(event -> MethodsPlaylist.onSearchSong(songInputField, outputArea, playlist));
+        addSongBtn.setOnAction(event -> MethodsPlaylist.onAddSong(songInputBox, messageBox, playlist));
+        removeBtn.setOnAction(event -> MethodsPlaylist.onRemoveSong(songInputBox, messageBox, playlist));
+        loadFileBtn.setOnAction(event -> MethodsPlaylist.onLoadSongs(messageBox, playlist));
+        saveBtn.setOnAction(event -> MethodsPlaylist.onSaveSongs(playlist, messageBox));
+        searchBtn.setOnAction(event -> MethodsPlaylist.onSearchSong(songInputBox, messageBox, playlist));
+        clearBtn.setOnAction(event -> MethodsPlaylist.onClearPlaylist(messageBox, playlist));
 
         // Add components to the content box.
-        contentBox.getChildren().addAll(promptLabel, songInputField, addSongBtn, removeBtn, loadFileBtn, saveBtn, searchBtn, outputArea);
+        contentBox.getChildren().addAll(promptLabel, songInputBox, addSongBtn, removeBtn, loadFileBtn, saveBtn, searchBtn, messageBox, clearBtn);
 
         // Set up the window and display it.
         Scene scene = new Scene(contentBox, 300, 400);

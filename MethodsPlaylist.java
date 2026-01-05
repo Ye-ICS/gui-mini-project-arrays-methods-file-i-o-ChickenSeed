@@ -82,4 +82,10 @@ public class MethodsPlaylist {
             outputBox.setText("Search Result: '" + searchTerm + "' not found.");
         }
     }
+
+    // Clear Playlist
+    public static void onClearPlaylist(TextArea outputBox, ArrayList<String> playlist) {
+        playlist.clear();
+        outputBox.setText("Playlist cleared successfully!");
+    }
 }
