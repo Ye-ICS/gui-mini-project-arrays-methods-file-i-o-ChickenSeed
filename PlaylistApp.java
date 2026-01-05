@@ -18,13 +18,18 @@ import java.io.PrintWriter;
  */
 public class PlaylistApp extends Application {
     private ArrayList<String> playlist = new ArrayList<>();
+    
     public static void main(String[] args) {
         launch(args);
     }
 
     @Override
     public void start(Stage stage) {
-                // Create components to add.
+        home(stage);
+    }
+
+    public void home(Stage stage) {
+        // Create components to add.
         VBox contentBox = new VBox();
         contentBox.setAlignment(Pos.CENTER);
 
@@ -46,6 +51,7 @@ public class PlaylistApp extends Application {
         Button removeBtn = new Button("Remove Song");
         Button saveBtn = new Button("Save Playlist");
         Button clearBtn = new Button("Clear Playlist");
+        Button viewPlaylistBtn = new Button("View Playlist");
 
         // Set up reactions (aka callbacks).
         addSongBtn.setOnAction(event -> MethodsPlaylist.onAddSong(songInputBox, messageBox, playlist));
@@ -54,9 +60,35 @@ public class PlaylistApp extends Application {
         saveBtn.setOnAction(event -> MethodsPlaylist.onSaveSongs(playlist, messageBox));
         searchBtn.setOnAction(event -> MethodsPlaylist.onSearchSong(songInputBox, messageBox, playlist));
         clearBtn.setOnAction(event -> MethodsPlaylist.onClearPlaylist(messageBox, playlist));
+        viewPlaylistBtn.setOnAction(event -> overview(stage));
 
         // Add components to the content box.
-        contentBox.getChildren().addAll(promptLabel, songInputBox, addSongBtn, removeBtn, loadFileBtn, saveBtn, searchBtn, messageBox, clearBtn);
+        contentBox.getChildren().addAll(promptLabel, songInputBox, addSongBtn, removeBtn, loadFileBtn, saveBtn, searchBtn, messageBox, clearBtn, viewPlaylistBtn);
+
+        // Set up the window and display it.
+        Scene scene = new Scene(contentBox, 300, 400);
+        stage.setScene(scene);
+        stage.setTitle("Playlist Manager");
+        stage.show();
+    }
+
+    public void overview(Stage stage) {
+        // Create components to add.
+        VBox contentBox = new VBox();
+        contentBox.setAlignment(Pos.CENTER);
+        
+        TextArea messageBox = new TextArea();
+        messageBox.setEditable(false);
+        messageBox.setText("Current Playlist:\n" + String.join("\n", playlist));
+
+        // Buttons
+        Button homeBtn = new Button("Home");
+
+        // Set up reactions (aka callbacks).
+        homeBtn.setOnAction(event -> home(stage));
+
+        // Add components to the content box.
+        contentBox.getChildren().addAll(messageBox, homeBtn);
 
         // Set up the window and display it.
         Scene scene = new Scene(contentBox, 300, 400);
