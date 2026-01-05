@@ -58,8 +58,8 @@ public class MethodsPlaylist {
     public static void onSaveSongs(ArrayList<String> playlist, TextArea outputBox) {
         try {
             PrintWriter writer = new PrintWriter("songs.txt");
-            for (String song : playlist) {
-                writer.println(song);
+            for (int i = 0; i < playlist.size(); i++) {
+                writer.println(playlist.get(i));
             }
             writer.close();
             outputBox.setText("Playlist saved successfully!");
